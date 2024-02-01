@@ -5,7 +5,6 @@
 int main(){
     const char* a = new char[5] {'h', 'a', 'h', 'a', '\0'};
     Log(a);
-    int qwrqewr;
     
     delete[] a;
     int numbers[] = {1, 2, 3, 4, 5};
