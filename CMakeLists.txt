@@ -9,16 +9,19 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 
-include_directories(${INCLUDE_DIR})
+#include_directories(${INCLUDE_DIR})
 
-file(GLOB SOURCES ${SOURCE_DIR}/*.cpp)
+#file(GLOB SOURCES ${SOURCE_DIR}/*.cpp)
 
 #add_executable(CppStudy ${SOURCES} ${INCLUDE_DIR}/headertry.h)
-add_executable(CppStudy ${PROJECT_SOURCEDIR}/src/)
-add_executable(CppStudy ${PROJECT_SOURCEDIR}/src/)
-add_executable(CppStudy ${PROJECT_SOURCEDIR}/src/)
-add_executable(CppStudy ${PROJECT_SOURCEDIR}/src/)
-add_executable(CppStudy ${PROJECT_SOURCEDIR}/src/)
+
+
+add_executable(CondVar ${PROJECT_SOURCE_DIR}/src/CondVar.cpp)
+#add_executable(deadlock ${PROJECT_SOURCEDIR}/src/deadlock.cpp)
+add_executable(LockGaurd ${PROJECT_SOURCE_DIR}/src/LockGaurd.cpp)
+add_executable(ScopedLock ${PROJECT_SOURCE_DIR}/src/ScopedLock.cpp)
+add_executable(SharingOneMutex ${PROJECT_SOURCE_DIR}/src/SharingOneMutex.cpp)
+
 #target_compile_features(CppStudy PUBLIC cxx_std_17)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

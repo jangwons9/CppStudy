@@ -2,24 +2,26 @@
 #include <mutex>
 #include <thread>
 
+
 int SharedResource1 =0;
 int SharedResource2 =0;
-std::mutex global;
+std::mutex global1;
+std::mutex global2;
 
-void add1()
+void add1() 
 {
-    global.lock();
+    std::scoped_lock(global1, global2);
     SharedResource1++;
 }
-
-void add2()
+void add2() 
 {
-    global.lock();
+    std::scoped_lock(global1, global2);
     SharedResource2++;
 }
 
 int main()
-{   std::thread t1(add1);
+{   
+    std::thread t1(add1);
     std::thread t2(add2);
 
     t1.join();
@@ -27,8 +29,3 @@ int main()
     
     std::cout << SharedResource1 << SharedResource2 << std::endl;
 }
-    
-/*
-problem of sharing one single mutex... second thread has to wait until first thread finish using the mutex
-
-*/
