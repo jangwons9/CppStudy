@@ -37,7 +37,7 @@ trylock--> return to its own job
     
 
 
-Deadlock --> each threads waits for others mutex to unlock
+Deadlock --> each threads waits for each other mutex to unlock
         To avoid: 1) must lock in same order
                   2) use lock_gaurd or scoped_lock
     
