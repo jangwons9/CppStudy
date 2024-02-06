@@ -27,32 +27,33 @@ Entity(T* ptr = nullptr)
 }
 // Move constructor(overloading)
 	// Transfer ownership of a.m_ptr to m_ptr
-	Entity(Entity&& a) noexcept // rvalue reference take only rvalue argument
-		: m_ptr(a.m_ptr)
-	{
-		a.m_ptr = nullptr; 
-	}
+Entity(Entity&& a) noexcept // rvalue reference take lvalue and rvalue argument
+    : m_ptr(a.m_ptr)
+{
+    a.m_ptr = nullptr; 
+}
 
 //copy constructor
-    Entity(const Entity& a)
-    // shallow copy    :m_ptr(a.m_ptr)
-    {//deep copy
-        m_ptr = new T;
-        *m_ptr = *a.m_ptr;
-    }
+Entity(const Entity& a)
+// shallow copy----:m_ptr(a.m_ptr)
+{//deep copy
+    m_ptr = new T;
+    *m_ptr = *a.m_ptr;
+}
 
 //copy assignment
-Entity& operator=(const Entity& a){
+Entity& operator=(const Entity& a)
+{
     if(&a == this){
         return *this;
     }
     // release any memory it was holdiong
     delete m_ptr;
-    //deep copy
+    //deep copy --> creating new copy
     m_ptr = new T;
     *m_ptr = *a.m_ptr;
 
-    return *this; // return a reference to the current object no use though
+    return *this; // return a reference to the current object, no use though
     // the returned refernce actually useless
 }
 
@@ -102,13 +103,14 @@ Entity <Resource> generateResource()
 }
 
 
-int main(){
-// rvalue refernce variables are lvalues/other 
+int main()
+{
+
     // Basic constructor
     Entity<Resource> mainres;
 
     // Move constructor
-    Entity<Resource> mainres_move;
+    Entity<Resource> mainres_move = std::move(generateResource());
     
 
     //Copy constructor
@@ -124,6 +126,11 @@ int main(){
         // the resource from temporary object is then assigned to mainres
 
         // mainres = (std::move(generateResource()) for std::vmoe****
+
+    //std::move
+    Entity<Resource> mainres_move_assignment_2;
+    mainres_move_assignment_2 = std::move(generateResource());
+    // basic move assignment does shallow copy, 
 	return 0;
 }
 
