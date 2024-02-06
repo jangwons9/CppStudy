@@ -21,6 +21,7 @@ add_executable(CondVar ${PROJECT_SOURCE_DIR}/src/CondVar.cpp)
 add_executable(LockGaurd ${PROJECT_SOURCE_DIR}/src/LockGaurd.cpp)
 add_executable(ScopedLock ${PROJECT_SOURCE_DIR}/src/ScopedLock.cpp)
 add_executable(SharingOneMutex ${PROJECT_SOURCE_DIR}/src/SharingOneMutex.cpp)
+add_executable(Overloading ${PROJECT_SOURCE_DIR}/src/overloading.cpp)
 
 #target_compile_features(CppStudy PUBLIC cxx_std_17)
 

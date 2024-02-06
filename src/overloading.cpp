@@ -104,13 +104,26 @@ Entity <Resource> generateResource()
 
 int main(){
 // rvalue refernce variables are lvalues/other 
-
+    // Basic constructor
     Entity<Resource> mainres;
-	mainres = generateResource(); //this line invokes move assignment only
-    // *** there is a temporary object created from return res; where res is transferd to that temporary object and since its temporary, it invokes from rvalue reference
-    // the resource from temporary object is then assigned to mainres
 
-    // mainres = (std::move(generateResource()) for std::vmoe****
+    // Move constructor
+    Entity<Resource> mainres_move;
+    
+
+    //Copy constructor
+    Entity<Resource> mainres_copy = generateResource();
+        //Resource acquired (during generateResource)
+        //haha
+        //Resource acquired (due to copy constructor)
+     
+    //Move Assignment
+    Entity<Resource> mainres_move_assignment;
+    mainres_move_assignment = generateResource(); //this line invokes move assignment only
+        // *** there is a temporary object created from return res; where res is transferd to that temporary object and since its temporary, it invokes from rvalue reference
+        // the resource from temporary object is then assigned to mainres
+
+        // mainres = (std::move(generateResource()) for std::vmoe****
 	return 0;
 }
 
