@@ -4,7 +4,8 @@
 // overloading = defining multiple functins with same function name by using different parameter types
 // overriding  = inheritence 걔념 where derived class function implements the base function( though must have same retunrn type and paramter)
 
-
+//const int& a -- take both lvalue and rvalue
+//int& a -- take lvalue only
 template <typename T>
 class Entity
 {
@@ -27,8 +28,8 @@ Entity(T* ptr = nullptr)
 }
 // Move constructor(overloading)
 	// Transfer ownership of a.m_ptr to m_ptr
-Entity(Entity&& a) noexcept // rvalue reference take lvalue and rvalue argument
-    : m_ptr(a.m_ptr)
+Entity(Entity&& a) noexcept // rvalue reference take only rvalue argument
+    : m_ptr(std::move(a.m_ptr))
 {
     a.m_ptr = nullptr; 
 }
@@ -76,9 +77,6 @@ Entity& operator=(Entity&& a) noexcept
 
 }
 
-    T& operator*() const { return *m_ptr; }
-	T* operator->() const { return m_ptr; }
-	bool isNull() const { return m_ptr == nullptr; }
 };
 
 class Resource
@@ -94,12 +92,11 @@ Entity <Resource> generateResource()
 {
 	Entity <Resource> res = new Resource ; // new Resource is rvalue while res is an lvalue
 	return res; // this return value will invoke the move constructor
-    // the res is actually an lvalue(an object with a type
-    // but compiler treats it as a rvlaue and perform move constructor
+    // the res is actually an lvalue(an object with a type)
 
     //std::move *****
-    // return std::move(res) makes lvalue cast to rvalue reference for the compilerrr
-
+    // return std::move(res) makes lvalue cast to rvalue reference for the paramter during compiling
+    // for directly implementing for move constructor
 }
 
 
