@@ -9,7 +9,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 
-#include_directories(${INCLUDE_DIR})
+include_directories(
+    /opt/homebrew/include/eigen3/
+    ${PROJECT_SOURCE_DIR}/include
+)
+
 
 #file(GLOB SOURCES ${SOURCE_DIR}/*.cpp)
 
